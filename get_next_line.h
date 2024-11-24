@@ -6,7 +6,7 @@
 /*   By: jocroon <jocroon@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:38:00 by jocroon           #+#    #+#             */
-/*   Updated: 2024/11/20 17:46:24 by jocroon          ###   ########.fr       */
+/*   Updated: 2024/11/24 23:19:41 by jocroon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 //main function
 char	*get_next_line(int fd);
 
 //utils function
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const *str, int c);
 
 #endif

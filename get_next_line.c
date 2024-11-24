@@ -6,7 +6,7 @@
 /*   By: jocroon <jocroon@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:36:37 by jocroon           #+#    #+#             */
-/*   Updated: 2024/11/20 17:37:58 by jocroon          ###   ########.fr       */
+/*   Updated: 2024/11/24 20:00:58 by jocroon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 char	*get_next_line(int fd)
 {
-	
+	static char	*save;
+	char		*line;
 }
