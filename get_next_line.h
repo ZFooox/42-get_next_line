@@ -6,7 +6,7 @@
 /*   By: jocroon <jocroon@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:38:00 by jocroon           #+#    #+#             */
-/*   Updated: 2024/11/25 14:37:13 by jocroon          ###   ########.fr       */
+/*   Updated: 2024/11/25 17:08:59 by jocroon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@
 
 //main function
 char	*get_next_line(int fd);
+char	*read_and_save(int fd, char *save);
+char	*extract_line(char **save);
 
 //utils function
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
-char	*ft_strjoin(char const *str1, char const *str2);
+char	*ft_strjoin(char *str1, char const *str2);
+char	*ft_strdup(const char *src);
+char	*ft_substr(char const *str, unsigned int start, size_t len);
 
 #endif
