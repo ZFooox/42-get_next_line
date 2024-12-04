@@ -24,6 +24,7 @@
 char	*get_next_line(int fd);
 char	*read_and_save(int fd, char *save);
 char	*extract_line(char **save);
+char	*join_and_free(char *save, char *buffer);
 
 //utils function
 size_t	ft_strlen(const char *str);

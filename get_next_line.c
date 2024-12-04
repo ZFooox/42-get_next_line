@@ -12,10 +12,23 @@
 
 #include "get_next_line.h"
 
+char	*join_and_free(char *save, char *buffer)
+{
+	char	*temp;
+
+	if (!buffer)
+		return (save);
+	if (!save)
+		return(ft_strdup(buffer));
+	temp = ft_strjoin(save, buffer);
+	free(save);
+	return (temp);
+}
+
 char	*read_and_save(int fd, char *save)
 {
 	char	*buffer;
-	size_t	bytes_read; //todo: check ssize_t
+	ssize_t	bytes_read;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -26,14 +39,14 @@ char	*read_and_save(int fd, char *save)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
-			free (buffer);
+			free(buffer);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		save = ft_strjoin(save, buffer);
+		save = join_and_free(save, buffer);
 		if (!save)
 		{
-			free (buffer);
+			free(buffer);
 			return (NULL);
 		}
 	}
@@ -47,7 +60,7 @@ char	*extract_line(char **save)
 	char	*temp;
 	size_t	len;
 
-	if (!*save)
+	if (!save || !*save || **save == '\0')
 		return (NULL);
 	len = 0;
 	while ((*save)[len] && (*save)[len] != '\n')
@@ -56,14 +69,20 @@ char	*extract_line(char **save)
 		len++;
 	line = ft_substr(*save, 0, len);
 	if (!line)
+	{
+		free(*save);
+		*save = NULL;
 		return (NULL);
+	}
 	temp = ft_strdup(*save + len);
 	if (!temp)
 	{
 		free(line);
+		free(*save);
+		*save = NULL;
 		return (NULL);
 	}
-	free (*save);
+	free(*save);
 	*save = temp;
 	return (line);
 }
@@ -79,5 +98,11 @@ char	*get_next_line(int fd)
 	if (!save)
 		return (NULL);
 	line = extract_line(&save);
+	if (!line)
+	{
+		free (save);
+		save = NULL;
+		return (NULL);
+	}
 	return (line);
 }
