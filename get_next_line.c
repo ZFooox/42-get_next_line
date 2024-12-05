@@ -26,6 +26,13 @@ char	*join_and_free(char *save, char *buffer)
 	return (temp);
 }
 
+char	*save_free_null(char **save)
+{
+	free(*save);
+	*save = NULL;
+	return (NULL);
+}
+
 char	*read_and_save(int fd, char *save)
 {
 	char	*buffer;
@@ -61,11 +68,7 @@ char	*extract_line(char **save)
 	size_t	len;
 
 	if (!*save || !**save)
-	{
-		free(*save);
-		*save = NULL;
-		return (NULL);
-	}
+		return (save_free_null(save));
 	len = 0;
 	while ((*save)[len] && (*save)[len] != '\n')
 		len++;
@@ -73,11 +76,7 @@ char	*extract_line(char **save)
 		len++;
 	line = ft_substr(*save, 0, len);
 	if (!line)
-	{
-		free(*save);
-		*save = NULL;
-		return (NULL);
-	}
+		return (save_free_null(save));
 	if ((*save)[len] != '\0')
 		temp = ft_strdup(*save + len);
 	else
