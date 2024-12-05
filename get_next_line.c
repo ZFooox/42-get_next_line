@@ -19,9 +19,10 @@ char	*join_and_free(char *save, char *buffer)
 	if (!buffer)
 		return (save);
 	if (!save)
-		return(ft_strdup(buffer));
+		return (ft_strdup(buffer));
 	temp = ft_strjoin(save, buffer);
 	free(save);
+	save = NULL;
 	return (temp);
 }
 
@@ -32,23 +33,22 @@ char	*read_and_save(int fd, char *save)
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
+	{
+		free (save);
 		return (NULL);
+	}
 	bytes_read = 1;
-	while (!ft_strchr(save, '\n') && bytes_read != 0)
+	while (!ft_strchr(save, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
 			free(buffer);
+			free (save);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
 		save = join_and_free(save, buffer);
-		if (!save)
-		{
-			free(buffer);
-			return (NULL);
-		}
 	}
 	free(buffer);
 	return (save);
@@ -60,8 +60,12 @@ char	*extract_line(char **save)
 	char	*temp;
 	size_t	len;
 
-	if (!save || !*save || **save == '\0')
+	if (!*save || !**save)
+	{
+		free(*save);
+		*save = NULL;
 		return (NULL);
+	}
 	len = 0;
 	while ((*save)[len] && (*save)[len] != '\n')
 		len++;
@@ -74,14 +78,10 @@ char	*extract_line(char **save)
 		*save = NULL;
 		return (NULL);
 	}
-	temp = ft_strdup(*save + len);
-	if (!temp)
-	{
-		free(line);
-		free(*save);
-		*save = NULL;
-		return (NULL);
-	}
+	if ((*save)[len] != '\0')
+		temp = ft_strdup(*save + len);
+	else
+		temp = NULL;
 	free(*save);
 	*save = temp;
 	return (line);
@@ -98,11 +98,5 @@ char	*get_next_line(int fd)
 	if (!save)
 		return (NULL);
 	line = extract_line(&save);
-	if (!line)
-	{
-		free (save);
-		save = NULL;
-		return (NULL);
-	}
 	return (line);
 }
