@@ -6,7 +6,7 @@
 /*   By: jocroon <jocroon@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:38:00 by jocroon           #+#    #+#             */
-/*   Updated: 2024/11/25 17:08:59 by jocroon          ###   ########.fr       */
+/*   Updated: 2024/12/20 11:14:02 by jocroon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@
 #  undef BUFFER_SIZE
 #  define BUFFER_SIZE 8192
 # endif
-
-//# if BUFFER_SIZE < 1
-//#  undef BUFFER_SIZE
-//#  define BUFFER_SIZE 1
-//# endif
 
 //main function
 char	*get_next_line(int fd);
