@@ -25,14 +25,14 @@
 #  define BUFFER_SIZE 8192
 # endif
 
-//main function
+/*main function*/
 char	*get_next_line(int fd);
 char	*read_and_save(int fd, char *save);
 char	*extract_line(char **save);
 char	*join_and_free(char *save, char *buffer);
 char	*save_free_null(char **save);
 
-//utils function
+/*utils function*/
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *str1, char const *str2);

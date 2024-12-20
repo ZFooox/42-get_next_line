@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//give the len of a string
+/*give the len of a string*/
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-//find a character in a string
+/*find a character in a string*/
 char	*ft_strchr(const char *str, int c)
 {
 	size_t	i;
@@ -45,7 +45,7 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
-//concatenate two string
+/*concatenate two string*/
 char	*ft_strjoin(char *str1, const char *str2)
 {
 	size_t	i;
@@ -73,7 +73,7 @@ char	*ft_strjoin(char *str1, const char *str2)
 	return (result);
 }
 
-//copy with memory allocation
+/*copy with memory allocation*/
 char	*ft_strdup(const char *src)
 {
 	char	*dest;
@@ -94,7 +94,7 @@ char	*ft_strdup(const char *src)
 	return (dest);
 }
 
-//extract a substring from a string
+/*extract a substring from a string*/
 char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	char	*substr;
