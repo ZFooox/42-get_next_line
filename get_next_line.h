@@ -6,7 +6,7 @@
 /*   By: jocroon <jocroon@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:38:00 by jocroon           #+#    #+#             */
-/*   Updated: 2024/12/20 11:14:02 by jocroon          ###   ########.fr       */
+/*   Updated: 2024/12/31 15:34:38 by jocroon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # if BUFFER_SIZE > 8192
 #  undef BUFFER_SIZE
-#  define BUFFER_SIZE 8192
+#  define BUFFER_SIZE 19
 # endif
 
 /*main function*/
